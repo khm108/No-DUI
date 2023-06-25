@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- 어플 설명 -->
+    <TextView
+        android:id="@+id/tvDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="어플 설명을 작성하세요"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="30dp"/>
+
+    <!-- 지도 페이지로 이동하는 버튼 -->
+    <Button
+        android:id="@+id/btnMap"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:text="길찾기"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="@id/tvDescription"
+        app:layout_constraintTop_toBottomOf="@id/tvDescription"
+        android:onClick="openMapPage" />
+
+    <!-- 전화번호 연결 페이지로 이동하는 버튼 -->
+    <Button
+        android:id="@+id/btnCall"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:text="대리운전"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="@id/btnMap"
+        app:layout_constraintTop_toBottomOf="@id/btnMap"
+        android:onClick="openCallPage" />
+
+    <Button
+        android:id="@+id/btnMy"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:text="내 정보"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="@id/btnCall"
+        app:layout_constraintTop_toBottomOf="@id/btnCall"
+        android:onClick="openMyPage" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
