@@ -1,10 +1,12 @@
 package com.example.nodui;
 
+import android.media.Image;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -15,9 +17,9 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class HomeFragment extends Fragment{
 
-    private Button btnMap;
-    private Button btnCall;
-    private Button btnMy;
+    private ImageButton btnMap;
+    private ImageButton btnCall;
+    private ImageButton btnMy;
     private BottomNavigationView bottomNavigationView;
 
     @Override
