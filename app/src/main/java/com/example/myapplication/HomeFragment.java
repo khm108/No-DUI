@@ -11,11 +11,15 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
-public class HomeFragment extends Fragment {
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationBarView;
+
+public class HomeFragment extends Fragment{
 
     private Button btnMap;
     private Button btnCall;
     private Button btnMy;
+    private BottomNavigationView bottomNavigationView;
 
     @Override
     @Nullable
@@ -27,11 +31,15 @@ public class HomeFragment extends Fragment {
         btnCall = view.findViewById(R.id.btnCall);
         btnMy = view.findViewById(R.id.btnMy);
 
+        // 하단 바 초기화
+        bottomNavigationView = requireActivity().findViewById(R.id.main_bnv);
+
         // 버튼 클릭 이벤트 처리
         btnMap.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 openMapFragment();
+                selectBottomNavigationItem(R.id.mapFragment);
             }
         });
 
@@ -39,6 +47,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 openCallFragment();
+                selectBottomNavigationItem(R.id.callFragment);
             }
         });
 
@@ -46,6 +55,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 openMyPageFragment();
+                selectBottomNavigationItem(R.id.myFragment);
             }
         });
 
@@ -53,7 +63,7 @@ public class HomeFragment extends Fragment {
     }
 
     private void openMapFragment() {
-        // MapFragment 열기
+        // MapFragment로 이동
         MapFragment mapFragment = new MapFragment();
         FragmentTransaction transaction = requireActivity().getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.main_frm, mapFragment);
@@ -62,7 +72,7 @@ public class HomeFragment extends Fragment {
     }
 
     private void openCallFragment() {
-        // CallFragment 열기
+        // CallFragment로 이동
         CallFragment callFragment = new CallFragment();
         FragmentTransaction transaction = requireActivity().getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.main_frm, callFragment);
@@ -71,11 +81,20 @@ public class HomeFragment extends Fragment {
     }
 
     private void openMyPageFragment() {
-        // MyPageFragment 열기
+        // MyPageFragment로 이동
         MyPageFragment myPageFragment = new MyPageFragment();
         FragmentTransaction transaction = requireActivity().getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.main_frm, myPageFragment);
         transaction.addToBackStack(null);
         transaction.commit();
+    }
+
+    private void selectBottomNavigationItem(int itemId) {
+        bottomNavigationView.post(new Runnable() {
+            @Override
+            public void run() {
+                bottomNavigationView.setSelectedItemId(itemId);
+            }
+        });
     }
 }
