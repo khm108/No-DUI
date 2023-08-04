@@ -98,6 +98,8 @@ public class CallFragment extends Fragment {
 //                Toast.makeText(getActivity(), message, Toast.LENGTH_SHORT).show();
 
                 Toast.makeText(getActivity(), "Tmap을 실행합니다", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "목적지 선택 후 좌측 상단 대리운전 버튼을 누르세요", Toast.LENGTH_LONG).show();
+
 
                 SharedPreferences.Editor editor = preferences.edit();
                 editor.putString("latitude", latitudeStr);
