@@ -4,19 +4,6 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/tvLatitude"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="20dp"
-        android:text="위도 : "/>
-    <TextView
-        android:id="@+id/tvLongitude"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="20dp"
-        android:text="위도 : "/>
-
 
     <TextView
         android:id="@+id/tvCurrentAddress"
@@ -25,11 +12,5 @@
         android:textSize="20dp"
         android:text="주소 : "/>
 
-    <TextView
-        android:id="@+id/tvMyHomeLocation"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="20dp"
-        android:text="우리집 : "/>
 
 </LinearLayout>
