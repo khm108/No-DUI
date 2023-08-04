@@ -17,6 +17,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.naver.maps.geometry.LatLng;
 
@@ -46,7 +47,18 @@ public class CallFragment extends Fragment {
         // 주소를 위도와 경도로 변환하는 메소드 호출
         getLatLngFromAddress(address);
 
+        openHomeFragment();
+
         return view;
+    }
+
+    private void openHomeFragment() {
+        // HomeFragment로 이동
+        HomeFragment HomeFragment = new HomeFragment();
+        FragmentTransaction transaction = requireActivity().getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.main_frm, HomeFragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
     }
 
     private void getLatLngFromAddress(String address) {
