@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:src="@drawable/main_icon"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="40dp"/>
+        android:layout_marginTop="30dp"/>
 
     <!-- 버튼들을 가운데 정렬하는 부분 -->
     <LinearLayout
@@ -20,42 +20,46 @@
         android:layout_below="@id/imageView"
         android:gravity="center"
         android:orientation="vertical"
-        android:layout_marginTop="50dp">
+        android:layout_marginTop="10dp">
 
         <!-- 버튼 1 -->
         <Button
             android:id="@+id/btnCall"
             android:layout_width="300dp"
-            android:layout_height="50dp"
+            android:layout_height="60dp"
             android:layout_marginTop="20dp"
             android:textColor="@color/black"
+            android:textSize="20dp"
             android:text="대리운전 (전화)" />
 
         <!-- 버튼 2 -->
         <Button
             android:id="@+id/btnTmap"
             android:layout_width="300dp"
-            android:layout_height="50dp"
+            android:layout_height="60dp"
             android:layout_marginTop="20dp"
             android:textColor="@color/black"
+            android:textSize="20dp"
             android:text="대리운전 (T map)" />
 
         <!-- 버튼 3 -->
         <Button
             android:id="@+id/btnMap"
             android:layout_width="300dp"
-            android:layout_height="50dp"
+            android:layout_height="60dp"
             android:layout_marginTop="20dp"
             android:textColor="@color/black"
+            android:textSize="20dp"
             android:text="대중교통" />
 
         <!-- 버튼 4 -->
         <Button
             android:id="@+id/btnWalk"
             android:layout_width="300dp"
-            android:layout_height="50dp"
+            android:layout_height="60dp"
             android:layout_marginTop="20dp"
             android:textColor="@color/black"
+            android:textSize="20dp"
             android:text="길찾기" />
 
     </LinearLayout>
