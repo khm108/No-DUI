@@ -1,6 +1,8 @@
 package com.example.nodui;
 
+import android.content.Intent;
 import android.media.Image;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,9 +19,10 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class HomeFragment extends Fragment{
 
-    private ImageButton btnMap;
-    private ImageButton btnCall;
-    private ImageButton btnMy;
+    private Button btnCall;
+    private Button btnTmap;
+    private Button btnSub;
+    private Button btnMap;
     private BottomNavigationView bottomNavigationView;
 
     @Override
@@ -28,35 +31,36 @@ public class HomeFragment extends Fragment{
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
         // 버튼 초기화
-        btnMap = view.findViewById(R.id.btnMap);
         btnCall = view.findViewById(R.id.btnCall);
-        btnMy = view.findViewById(R.id.btnMy);
+        btnTmap = view.findViewById(R.id.btnTmap);
+        btnSub = view.findViewById(R.id.btnSubway);
+        btnMap = view.findViewById(R.id.btnMap);
+
 
         // 하단 바 초기화
         bottomNavigationView = requireActivity().findViewById(R.id.main_bnv);
 
         // 버튼 클릭 이벤트 처리
-        btnMap.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openMapFragment();
-                selectBottomNavigationItem(R.id.mapFragment);
-            }
-        });
-
         btnCall.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openCallFragment();
-                selectBottomNavigationItem(R.id.callFragment);
+                openDialer("01052108291");
+                // 대리운전 전화로 부르기
+
             }
         });
 
-        btnMy.setOnClickListener(new View.OnClickListener() {
+        btnTmap.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openMyPageFragment();
-                selectBottomNavigationItem(R.id.myFragment);
+                openCallFragment();
+            }
+        });
+
+        btnSub.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openMapFragment();
             }
         });
 
@@ -97,5 +101,14 @@ public class HomeFragment extends Fragment{
                 bottomNavigationView.setSelectedItemId(itemId);
             }
         });
+    }
+
+    private void openDialer(String phoneNumber) {
+        // 전화 걸기 Intent 생성
+        Intent dialIntent = new Intent(Intent.ACTION_DIAL);
+        dialIntent.setData(Uri.parse("tel:" + phoneNumber));
+
+        // 전화 걸기 Intent 실행
+        startActivity(dialIntent);
     }
 }

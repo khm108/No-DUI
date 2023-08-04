@@ -9,16 +9,16 @@
         android:enabled="true"
         android:title="홈"
         tools:ignore="AlwaysShowAction" />
-    <item
-        android:id="@+id/callFragment"
-        android:icon="@drawable/ic_drive"
-        app:showAsAction="always"
-        android:title="대리운전" />
-    <item
-        android:id="@+id/mapFragment"
-        app:showAsAction="always"
-        android:icon="@drawable/ic_map"
-        android:title="대중교통" />
+<!--    <item-->
+<!--        android:id="@+id/callFragment"-->
+<!--        android:icon="@drawable/ic_drive"-->
+<!--        app:showAsAction="always"-->
+<!--        android:title="대리운전" />-->
+<!--    <item-->
+<!--        android:id="@+id/mapFragment"-->
+<!--        app:showAsAction="always"-->
+<!--        android:icon="@drawable/ic_map"-->
+<!--        android:title="대중교통" />-->
     <item
         android:id="@+id/myFragment"
         android:icon="@drawable/ic_my"

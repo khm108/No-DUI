@@ -56,14 +56,14 @@ public class MainActivity extends AppCompatActivity {
                         getSupportFragmentManager().beginTransaction().replace(R.id.main_frm, homeFragment).commit();
                         item.setChecked(true); // 선택된 아이템에 대한 체크 상태 설정
                         return true;
-                    case R.id.mapFragment:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.main_frm, mapFragment).commit();
-                        item.setChecked(true);
-                        return true;
-                    case R.id.callFragment:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.main_frm, callFragment).commit();
-                        item.setChecked(true);
-                        return true;
+//                    case R.id.mapFragment:
+//                        getSupportFragmentManager().beginTransaction().replace(R.id.main_frm, mapFragment).commit();
+//                        item.setChecked(true);
+//                        return true;
+//                    case R.id.callFragment:
+//                        getSupportFragmentManager().beginTransaction().replace(R.id.main_frm, callFragment).commit();
+//                        item.setChecked(true);
+//                        return true;
                     case R.id.myFragment:
                         getSupportFragmentManager().beginTransaction().replace(R.id.main_frm, myPageFragment).commit();
                         item.setChecked(true);
