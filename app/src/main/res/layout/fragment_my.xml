@@ -4,17 +4,28 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <EditText
-        android:id="@+id/etName"
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="이름을 입력하세요" />
+        android:paddingTop="50dp"
+        android:paddingBottom="30dp"
+        android:textSize="20dp"
+        android:textAlignment="center"
+        android:text="목적지 등록"/>
+<!--    <EditText-->
+<!--        android:id="@+id/etName"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:hint="이름을 입력하세요" />-->
 
     <EditText
         android:id="@+id/etAddress"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="주소를 입력하세요" />
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:textAlignment="center"
+        android:hint="주소 또는 장소를 입력하세요 (예: 가천대학교)"/>
 
     <Button
         android:id="@+id/btnSave"

@@ -27,7 +27,7 @@ import java.net.URLEncoder;
 import java.util.List;
 import java.util.Locale;
 
-public class MapFragment extends Fragment {
+public class WalkFragment extends Fragment {
 
     private TextView tvCurrentAddress;
     private SharedPreferences preferences;
@@ -48,7 +48,7 @@ public class MapFragment extends Fragment {
         getLatLngFromAddress(address);
 
         openHomeFragment();
-        
+
         return view;
     }
 
@@ -99,6 +99,7 @@ public class MapFragment extends Fragment {
 
                 Toast.makeText(getActivity(), "네이버 지도를 실행합니다", Toast.LENGTH_SHORT).show();
 
+
                 SharedPreferences.Editor editor = preferences.edit();
                 editor.putString("latitude", latitudeStr);
                 editor.putString("longitude", longitudeStr);
@@ -113,7 +114,7 @@ public class MapFragment extends Fragment {
                     throw new RuntimeException(e);
                 }
 
-                String url = "nmap://route/public?dlat=" + latitudeStr + "&dlng=" + longitudeStr + "&dname=" + uniAddress + "&appname=com.example.nodui";
+                String url = "nmap://route/walk?dlat=" + latitudeStr + "&dlng=" + longitudeStr + "&dname=" + uniAddress + "&appname=com.example.nodui";
                 Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
                 startActivity(intent);
 

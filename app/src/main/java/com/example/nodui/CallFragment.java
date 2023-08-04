@@ -94,8 +94,10 @@ public class CallFragment extends Fragment {
                 String longitudeStr = String.valueOf(latLng.longitude);
 
                 // 아래는 임시로 토스트 메시지로 위도와 경도를 출력하는 예시입니다.
-                String message = "위도: " + latitudeStr + ", 경도: " + longitudeStr;
-                Toast.makeText(getActivity(), message, Toast.LENGTH_SHORT).show();
+//                String message = "위도: " + latitudeStr + ", 경도: " + longitudeStr;
+//                Toast.makeText(getActivity(), message, Toast.LENGTH_SHORT).show();
+
+                Toast.makeText(getActivity(), "Tmap을 실행합니다", Toast.LENGTH_SHORT).show();
 
                 SharedPreferences.Editor editor = preferences.edit();
                 editor.putString("latitude", latitudeStr);

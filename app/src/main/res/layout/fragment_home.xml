@@ -42,7 +42,7 @@
 
         <!-- 버튼 3 -->
         <Button
-            android:id="@+id/btnSubway"
+            android:id="@+id/btnMap"
             android:layout_width="300dp"
             android:layout_height="50dp"
             android:layout_marginTop="20dp"
@@ -51,7 +51,7 @@
 
         <!-- 버튼 4 -->
         <Button
-            android:id="@+id/btnMap"
+            android:id="@+id/btnWalk"
             android:layout_width="300dp"
             android:layout_height="50dp"
             android:layout_marginTop="20dp"

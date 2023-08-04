@@ -21,8 +21,8 @@ public class HomeFragment extends Fragment{
 
     private Button btnCall;
     private Button btnTmap;
-    private Button btnSub;
     private Button btnMap;
+    private Button btnWalk;
     private BottomNavigationView bottomNavigationView;
 
     @Override
@@ -33,8 +33,8 @@ public class HomeFragment extends Fragment{
         // 버튼 초기화
         btnCall = view.findViewById(R.id.btnCall);
         btnTmap = view.findViewById(R.id.btnTmap);
-        btnSub = view.findViewById(R.id.btnSubway);
         btnMap = view.findViewById(R.id.btnMap);
+        btnWalk = view.findViewById(R.id.btnWalk);
 
 
         // 하단 바 초기화
@@ -44,7 +44,7 @@ public class HomeFragment extends Fragment{
         btnCall.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openDialer("01052108291");
+                openDialer("25882588");
                 // 대리운전 전화로 부르기
 
             }
@@ -57,10 +57,17 @@ public class HomeFragment extends Fragment{
             }
         });
 
-        btnSub.setOnClickListener(new View.OnClickListener() {
+        btnMap.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 openMapFragment();
+            }
+        });
+
+        btnWalk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openWalkFragment();
             }
         });
 
@@ -81,6 +88,15 @@ public class HomeFragment extends Fragment{
         CallFragment callFragment = new CallFragment();
         FragmentTransaction transaction = requireActivity().getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.main_frm, callFragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
+    }
+
+    private void openWalkFragment() {
+        // WalkFragment로 이동
+        WalkFragment walkFragment = new WalkFragment();
+        FragmentTransaction transaction = requireActivity().getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.main_frm, walkFragment);
         transaction.addToBackStack(null);
         transaction.commit();
     }

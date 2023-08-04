@@ -15,7 +15,7 @@ import androidx.fragment.app.Fragment;
 
 public class MyPageFragment extends Fragment {
 
-    private EditText etName;
+//    private EditText etName;
     private EditText etAddress;
     private Button btnSave;
 
@@ -32,15 +32,15 @@ public class MyPageFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_my, container, false);
 
-        etName = view.findViewById(R.id.etName);
+//        etName = view.findViewById(R.id.etName);
         etAddress = view.findViewById(R.id.etAddress);
         btnSave = view.findViewById(R.id.btnSave);
 
         // 저장된 정보 불러오기
-        String savedName = preferences.getString("name", "");
+//        String savedName = preferences.getString("name", "");
         String savedAddress = preferences.getString("address", "");
 
-        etName.setText(savedName);
+//        etName.setText(savedName);
         etAddress.setText(savedAddress);
 
         btnSave.setOnClickListener(new View.OnClickListener() {
@@ -53,12 +53,12 @@ public class MyPageFragment extends Fragment {
     }
 
     private void saveInformation() {
-        String name = etName.getText().toString().trim();
+//        String name = etName.getText().toString().trim();
         String address = etAddress.getText().toString().trim();
 
         // 정보 저장
         SharedPreferences.Editor editor = preferences.edit();
-        editor.putString("name", name);
+//        editor.putString("name", name);
         editor.putString("address", address);
         editor.apply();
 
