@@ -8,6 +8,7 @@ import androidx.core.content.ContextCompat;
 import android.Manifest;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
@@ -17,6 +18,12 @@ import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
+
+import android.content.Context;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -66,9 +73,54 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        checkAndOpenApp1();
+        checkAndOpenApp2();
+
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         checkLocationPermission();
         startLocationService();
+    }
+
+    private void checkAndOpenApp1() {
+        String packageName = "com.skt.tmap.ku"; // 티맵 패키지 이름
+
+        if (!isAppInstalled(packageName)) {
+            // 앱이 설치되어 있지 않으면 Play Store로 이동
+            openAppInPlayStore(packageName);
+        }
+    }
+
+    private void checkAndOpenApp2() {
+        String packageName = "com.nhn.android.nmap"; // 네이버 지도 패키지 이름
+
+        if (!isAppInstalled(packageName)) {
+            // 앱이 설치되어 있지 않으면 Play Store로 이동
+            openAppInPlayStore(packageName);
+        }
+    }
+    private boolean isAppInstalled(String packageName) {
+        try {
+            PackageInfo packageInfo = getPackageManager().getPackageInfo(packageName, PackageManager.GET_ACTIVITIES);
+            return true;
+        } catch (PackageManager.NameNotFoundException e) {
+            Toast.makeText(this, "앱이 설치되어 있지 않습니다.", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+//        try {
+//            packageManager.getPackageInfo(packageName, 0);
+//            return true;
+//        } catch (PackageManager.NameNotFoundException e) {
+//            return false;
+//        }
+    }
+
+    private void openAppInPlayStore(String packageName) {
+        try {
+            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + packageName)));
+        } catch (android.content.ActivityNotFoundException anfe) {
+            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + packageName)));
+        }
     }
 
     private void checkLocationPermission() {

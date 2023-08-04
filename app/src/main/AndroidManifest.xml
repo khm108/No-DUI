@@ -33,4 +33,9 @@
             android:value="q48rqdwgv1" />
     </application>
 
+    <queries>
+        <package android:name="com.skt.tmap.ku"/>
+        <package android:name="com.nhn.android.nmap"/>
+    </queries>
+
 </manifest>
