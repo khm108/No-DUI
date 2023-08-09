@@ -27,7 +27,7 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:textAlignment="center"
-        android:hint="주소 또는 장소를 입력하세요 (예: 가천대학교)"/>
+        android:hint="주소 또는 장소를 입력하세요\n(예: 가천대학교)"/>
 
     <Button
         android:id="@+id/btnSave"

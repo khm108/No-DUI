@@ -29,8 +29,9 @@
             android:layout_height="60dp"
             android:layout_marginTop="20dp"
             android:textColor="@color/black"
+            android:backgroundTint="@color/yellow"
             android:textSize="20dp"
-            android:text="대리운전 (전화)" />
+            android:text="대리운전 (전화)"/>
 
         <!-- 버튼 2 -->
         <Button
@@ -39,6 +40,7 @@
             android:layout_height="60dp"
             android:layout_marginTop="20dp"
             android:textColor="@color/black"
+            android:backgroundTint="@color/yellow"
             android:textSize="20dp"
             android:text="대리운전 (T map)" />
 
@@ -49,6 +51,7 @@
             android:layout_height="60dp"
             android:layout_marginTop="20dp"
             android:textColor="@color/black"
+            android:backgroundTint="@color/yellow"
             android:textSize="20dp"
             android:text="대중교통" />
 
@@ -59,8 +62,9 @@
             android:layout_height="60dp"
             android:layout_marginTop="20dp"
             android:textColor="@color/black"
+            android:backgroundTint="@color/yellow"
             android:textSize="20dp"
-            android:text="길찾기" />
+            android:text="걸어가기" />
 
     </LinearLayout>
 </RelativeLayout>

@@ -30,7 +30,9 @@ public class MainActivity extends AppCompatActivity {
     private HomeFragment homeFragment;
     private MapFragment mapFragment;
     private CallFragment callFragment;
+    private WalkFragment walkFragment;
     private MyPageFragment myPageFragment;
+
     private BottomNavigationView bottomNavigationView;
     private LocationManager locationManager;
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 100;
@@ -43,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
         homeFragment = new HomeFragment();
         mapFragment = new MapFragment();
         callFragment = new CallFragment();
+        walkFragment = new WalkFragment();
         myPageFragment = new MyPageFragment();
 
         getSupportFragmentManager().beginTransaction().replace(R.id.main_frm, homeFragment).commit();
@@ -56,14 +59,18 @@ public class MainActivity extends AppCompatActivity {
                         getSupportFragmentManager().beginTransaction().replace(R.id.main_frm, homeFragment).commit();
                         item.setChecked(true); // 선택된 아이템에 대한 체크 상태 설정
                         return true;
-//                    case R.id.mapFragment:
-//                        getSupportFragmentManager().beginTransaction().replace(R.id.main_frm, mapFragment).commit();
-//                        item.setChecked(true);
-//                        return true;
-//                    case R.id.callFragment:
-//                        getSupportFragmentManager().beginTransaction().replace(R.id.main_frm, callFragment).commit();
-//                        item.setChecked(true);
-//                        return true;
+                    case R.id.mapFragment:
+                        getSupportFragmentManager().beginTransaction().replace(R.id.main_frm, mapFragment).commit();
+                        item.setChecked(true);
+                        return true;
+                    case R.id.callFragment:
+                        getSupportFragmentManager().beginTransaction().replace(R.id.main_frm, callFragment).commit();
+                        item.setChecked(true);
+                        return true;
+                    case R.id.walkFragment:
+                        getSupportFragmentManager().beginTransaction().replace(R.id.main_frm, walkFragment).commit();
+                        item.setChecked(true);
+                        return true;
                     case R.id.myFragment:
                         getSupportFragmentManager().beginTransaction().replace(R.id.main_frm, myPageFragment).commit();
                         item.setChecked(true);
