@@ -121,12 +121,12 @@ public class MainActivity extends AppCompatActivity {
 
         createNotificationChannel("1", "default channel", NotificationManager.IMPORTANCE_HIGH);
 
-        createNotification("1", 1, "title", "text");
+        // createNotification("1", 1, "title", "text");
 
 
-        // 여기가 문제
-//        Intent serviceIntent = new Intent(this, BluetoothService.class);
-//        startService(serviceIntent);
+
+        Intent serviceIntent = new Intent(this, BluetoothService.class);
+        startService(serviceIntent);
 
     }
 
@@ -352,15 +352,8 @@ public class MainActivity extends AppCompatActivity {
                     bytesRead[0] = inputStream.read(buffer);
                     String readMessage = new String(buffer, 0, bytesRead[0]);
 
-                    if(readMessage.trim().equals("3")) {
-                        runOnUiThread(() -> Toast.makeText(MainActivity.this, "hi", Toast.LENGTH_LONG).show());
-
-                    }
-
-                    runOnUiThread(() -> Toast.makeText(MainActivity.this, readMessage.trim(), Toast.LENGTH_SHORT).show());
-                    createNotification("1", 1, "title", "text");
-
-
+                    // 데이터를 받았을 때 UI 스레드에서 작업 실행
+                    runOnUiThread(() -> processData(readMessage.trim()));
 
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -371,6 +364,16 @@ public class MainActivity extends AppCompatActivity {
 
         thread.start();
     }
+
+    private void processData(String data) {
+        if (data.equals("1")) {
+            Toast.makeText(MainActivity.this, "hi", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(MainActivity.this, data, Toast.LENGTH_SHORT).show();
+        }
+    }
+
+
 
 
     public void createNotificationChannel(String channelId, String channelName, int importance){
