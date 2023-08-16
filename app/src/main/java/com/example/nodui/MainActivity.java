@@ -1,5 +1,7 @@
 package com.example.nodui;
 
+import static java.lang.Thread.sleep;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
@@ -47,6 +49,8 @@ public class MainActivity extends AppCompatActivity {
     private CallFragment callFragment;
     private WalkFragment walkFragment;
     private MyPageFragment myPageFragment;
+
+    Thread thread;
 
     private BottomNavigationView bottomNavigationView;
     private LocationManager locationManager;
@@ -119,6 +123,11 @@ public class MainActivity extends AppCompatActivity {
 
         initBluetooth();
 
+        try {
+            sleep(2000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
 
 
         //createNotificationChannel("1", "default channel", NotificationManager.IMPORTANCE_HIGH);
@@ -269,6 +278,7 @@ public class MainActivity extends AppCompatActivity {
             connectBluetooth();
         }
     }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -356,7 +366,7 @@ public class MainActivity extends AppCompatActivity {
         byte[] buffer = new byte[256];
         int[] bytesRead = new int[1];
 
-        Thread thread = new Thread(() -> {
+        thread = new Thread(() -> {
             while (true) {
                 try {
                     bytesRead[0] = inputStream.read(buffer);
@@ -375,38 +385,7 @@ public class MainActivity extends AppCompatActivity {
         thread.start();
     }
 
-    private void processData(String data) {
-        if (data.equals("1")) {
-            Toast.makeText(MainActivity.this, "hi", Toast.LENGTH_SHORT).show();
-        } else {
-            Toast.makeText(MainActivity.this, data, Toast.LENGTH_SHORT).show();
-        }
-    }
 
-
-
-
-    public void createNotificationChannel(String channelId, String channelName, int importance){
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
-            NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-            notificationManager.createNotificationChannel(new NotificationChannel(channelId, channelName, importance));
-        }
-    }
-
-    void createNotification(String channelId, int id, String title, String text)
-    {
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, channelId)
-                .setPriority(NotificationCompat.PRIORITY_HIGH)          // Head Up Display를 위해 PRIORITY_HIGH 설정
-                .setSmallIcon(R.drawable.ic_launcher_foreground)        // 알림시 보여지는 아이콘. 반드시 필요
-                .setContentTitle(title)
-                .setContentText(text)
-                //.setTimeoutAfter(1000)    // 지정한 시간 이후 알림 삭제
-                //.setStyle(new NotificationCompat.BigTextStyle().bigText(text))          // 한줄 이상의 텍스트를 모두 보여주고 싶을때 사용
-                .setDefaults(Notification.DEFAULT_SOUND | Notification.DEFAULT_VIBRATE);  // 알림시 효과음, 진동 여부
-
-        NotificationManager notificationManager = (NotificationManager)getSystemService(NOTIFICATION_SERVICE);
-        notificationManager.notify(id, builder.build());
-    }
 
 }
 
