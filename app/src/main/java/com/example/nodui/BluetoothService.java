@@ -46,35 +46,32 @@ public class BluetoothService extends Service {
     MainActivity mainActivity = new MainActivity();
 
 
-
     @Override
     public void onCreate() {
 
         createNotificationChannel("1", "default channel", NotificationManager.IMPORTANCE_HIGH);
 
-        // 블루투스 권한 요청
-        if (checkSelfPermission(android.Manifest.permission.BLUETOOTH) != PackageManager.PERMISSION_GRANTED) {
-            mainActivity.requestPermissions(new String[]{Manifest.permission.BLUETOOTH}, REQUEST_BLUETOOTH_PERMISSIONS);
-        } else {
-            initBluetooth();
-        }
+//        // 블루투스 권한 요청
+//        if (checkSelfPermission(android.Manifest.permission.BLUETOOTH) != PackageManager.PERMISSION_GRANTED) {
+//            mainActivity.requestPermissions(new String[]{Manifest.permission.BLUETOOTH}, REQUEST_BLUETOOTH_PERMISSIONS);
+//        } else {
+//            initBluetooth();
+//        }
+
+        initBluetooth();
+
+        Notification notification = new NotificationCompat.Builder(this, "1")
+                .setContentTitle("백그라운드에서 실행")
+                .setContentText("음주가 감지되면 알림을 제공합니다")
+                .setSmallIcon(R.drawable.ic_notification)
+                .build();
+
 
         // createNotification("1", 1, "title", "text");
 
 
         running = true;
         connectToBluetoothDevice();
-
-        createNotificationChannel("1", "default channel", NotificationManager.IMPORTANCE_HIGH);
-
-        Notification notification = new NotificationCompat.Builder(this, "1")
-                .setContentTitle("백그라운드에서 실행")
-                .setContentText("음주가 감지되면 알림을 제공합니다")
-                .setSmallIcon(R.drawable.ic_notification)
-
-                .build();
-
-
 
         startForeground(1, notification);
     }

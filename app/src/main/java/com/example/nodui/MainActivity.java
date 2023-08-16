@@ -41,6 +41,7 @@ import java.util.UUID;
 
 public class MainActivity extends AppCompatActivity {
 
+    private PermissionSupport permission;
     private HomeFragment homeFragment;
     private MapFragment mapFragment;
     private CallFragment callFragment;
@@ -51,8 +52,11 @@ public class MainActivity extends AppCompatActivity {
     private LocationManager locationManager;
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 100;
 
-    private static final int REQUEST_BLUETOOTH_PERMISSIONS = 1;
     private static final int REQUEST_ENABLE_BLUETOOTH = 2;
+
+    private static final int REQUEST_LOCATION_PERMISSIONS = 1;
+    private static final int REQUEST_BLUETOOTH_PERMISSIONS = 2;
+    private static final int REQ_PERMISSION_PUSH = 3;
 
 
     private final String DEVICE_NAME = "abcd";
@@ -104,6 +108,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        permissionCheck();
+
         checkAndOpenApp1();
         checkAndOpenApp2();
 
@@ -111,18 +117,11 @@ public class MainActivity extends AppCompatActivity {
         checkLocationPermission();
         startLocationService();
 
-        // 블루투스 권한 요청
-        if (checkSelfPermission(Manifest.permission.BLUETOOTH) != PackageManager.PERMISSION_GRANTED) {
-            requestPermissions(new String[]{Manifest.permission.BLUETOOTH}, REQUEST_BLUETOOTH_PERMISSIONS);
-        } else {
-            initBluetooth();
-        }
+        initBluetooth();
 
 
-        createNotificationChannel("1", "default channel", NotificationManager.IMPORTANCE_HIGH);
 
-        // createNotification("1", 1, "title", "text");
-
+        //createNotificationChannel("1", "default channel", NotificationManager.IMPORTANCE_HIGH);
 
 
         Intent serviceIntent = new Intent(this, BluetoothService.class);
@@ -221,18 +220,29 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+
+    // 권한 체크
+    private void permissionCheck() {
+
+        // PermissionSupport.java 클래스 객체 생성
+        permission = new PermissionSupport(this, this);
+
+        // 권한 체크 후 리턴이 false로 들어오면
+        if (!permission.checkPermission()){
+            //권한 요청
+            permission.requestPermission();
+        }
+    }
+
+    // Request Permission에 대한 결과 값 받아와
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode == REQUEST_BLUETOOTH_PERMISSIONS) {
-            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                initBluetooth();
-            } else {
-                // 권한이 거부되면 앱 종료 또는 사용자에게 안내 메시지 표시
-                Toast.makeText(this, "블루투스 권한이 필요합니다.", Toast.LENGTH_SHORT).show();
-                finish();
-            }
+        //여기서도 리턴이 false로 들어온다면 (사용자가 권한 허용 거부)
+        if (!permission.permissionResult(requestCode, permissions, grantResults)) {
+            // 다시 permission 요청
+            permission.requestPermission();
         }
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
 
     public void initBluetooth() {
@@ -353,7 +363,7 @@ public class MainActivity extends AppCompatActivity {
                     String readMessage = new String(buffer, 0, bytesRead[0]);
 
                     // 데이터를 받았을 때 UI 스레드에서 작업 실행
-                    runOnUiThread(() -> processData(readMessage.trim()));
+                    // runOnUiThread(() -> processData(readMessage.trim()));
 
                 } catch (IOException e) {
                     e.printStackTrace();
