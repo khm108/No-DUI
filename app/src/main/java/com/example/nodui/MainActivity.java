@@ -121,10 +121,16 @@ public class MainActivity extends AppCompatActivity {
         checkLocationPermission();
         startLocationService();
 
+        try {
+            sleep(1000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+
         initBluetooth();
 
         try {
-            sleep(2000);
+            sleep(1000);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
@@ -327,6 +333,10 @@ public class MainActivity extends AppCompatActivity {
             if (iterator.getName().equals(DEVICE_NAME)) {
                 device = iterator;
                 break;
+            } else {
+                Toast.makeText(this, "블루투스 연결을 확인해주세요", Toast.LENGTH_SHORT).show();
+                getSupportFragmentManager().beginTransaction().replace(R.id.main_frm, homeFragment).commit();
+                return;
             }
         }
 
@@ -341,6 +351,8 @@ public class MainActivity extends AppCompatActivity {
                 // for ActivityCompat#requestPermissions for more details.
                 return;
             }
+
+
             socket = device.createRfcommSocketToServiceRecord(PORT_UUID);
             if (ActivityCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
                 // TODO: Consider calling

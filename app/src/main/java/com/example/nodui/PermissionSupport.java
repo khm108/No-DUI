@@ -12,6 +12,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.Manifest;
+import android.widget.Toast;
+
 public class PermissionSupport {
 
     private Context context;
@@ -71,6 +73,7 @@ public class PermissionSupport {
                 //grantResults 가 0이면 사용자가 허용한 것 / -1이면 거부한 것
                 //-1이 있는지 체크하여 하나라도 -1이 나온다면 false를 리턴
                 if(grantResults[i] == -1){
+                    Toast.makeText(context.getApplicationContext(),"권한 허용", Toast.LENGTH_SHORT).show();
                     return false;
                 }
             }
