@@ -122,26 +122,29 @@ public class MainActivity extends AppCompatActivity {
         startLocationService();
 
         try {
-            sleep(1000);
+            sleep(2000);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
 
         initBluetooth();
 
-        try {
-            sleep(1000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-
-
-        //createNotificationChannel("1", "default channel", NotificationManager.IMPORTANCE_HIGH);
 
 
         Intent serviceIntent = new Intent(this, BluetoothService.class);
         startService(serviceIntent);
 
+    }
+
+    protected void onResume() {
+
+//        initBluetooth();
+//
+//        Intent serviceIntent = new Intent(this, BluetoothService.class);
+//        startService(serviceIntent);
+
+
+        super.onResume();
     }
 
     private void checkAndOpenApp1() {

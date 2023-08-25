@@ -2,6 +2,8 @@ package com.example.nodui;
 
 import static android.app.Activity.RESULT_OK;
 
+import static java.lang.Thread.sleep;
+
 import android.Manifest;
 import android.app.Notification;
 import android.app.NotificationChannel;
@@ -56,7 +58,14 @@ public class BluetoothService extends Service {
         createNotificationChannel("1", "default channel", NotificationManager.IMPORTANCE_HIGH);
 
 
+//        try {
+//            sleep(2000);
+//        } catch (InterruptedException e) {
+//            throw new RuntimeException(e);
+//        }
+
         initBluetooth();
+
 
         Notification notification = new NotificationCompat.Builder(this, "1")
                 .setContentTitle("백그라운드에서 실행")
